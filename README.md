@@ -2,9 +2,10 @@
 
 Operational framework and patterns for high-quality, AI-assisted software development. This repository provides a single canonical guide ([AGENTS.md](./AGENTS.md)) and a lightweight workflow for repeatable, auditable, and architecture-first delivery.
 
-- Version: 2.1 (2025-10-25)
+- Version: 2.2 (2025-03-04)
 - Compatibility: Claude, Cursor, Copilot, Cline, Aider, and all AGENTS.md-compatible tools
 - Status: Canonical single-file guide for AI-assisted development
+- Sponsor this project: [GitHub Sponsors](https://github.com/sponsors/msitarzewski)
 
 ---
 
@@ -69,6 +70,10 @@ States: PLAN → BUILD → DIFF → QA → APPROVAL → APPLY → DOCS
 - DOCS: Create task docs and update the Memory Bank.
 
 Full details and formats (including report templates) in [AGENTS.md §4](./AGENTS.md#4-state-machine).
+
+### Compaction Protocol (New in 2.2)
+
+Context compression can happen at any time without warning. AGENT-ZERO persists state to the Memory Bank at **every state transition**, so recovery is automatic — no pre-compaction save needed. After compaction, the agent re-enters via Fast Track startup and resumes from the saved state. See [AGENTS.md §2 — Compaction Protocol](./AGENTS.md#compaction-protocol-mid-session-context-preservation).
 
 ---
 
@@ -149,7 +154,7 @@ A field-tested, cross-agent routine for flawless execution:
 2. Create symlinks (ln -s) to [AGENTS.md](./AGENTS.md) so tools share the same canonical files where possible.
 3. Reboot your agent of choice (e.g., Claude Code). First command:
    ```
-   Examine the code base to create the memory bank according to the AGENTS 2.1 spec. Do not use readme files or other documentation, examine the code and logic.
+   Examine the code base to create the memory bank according to the AGENTS 2.2 spec. Do not use readme files or other documentation, examine the code and logic.
    ```
 4. Clear the session memory to prevent context pollution: `/compact` or `/clear`.
 5. On every subsequent boot, type: `startup`.
@@ -248,4 +253,3 @@ Contributions welcome—follow the state machine and approval gates.
 - State machine and templates: [AGENTS.md §4](./AGENTS.md#4-state-machine)
 - Memory Bank structure: [AGENTS.md §3](./AGENTS.md#3-memory-bank)
 - Quality & Security: [AGENTS.md §6](./AGENTS.md#6-quality--documentation)
-- Field-tested guide (reference): [openstudio/AGENTS.md](https://github.com/msitarzewski/openstudio/blob/main/AGENTS.md)
